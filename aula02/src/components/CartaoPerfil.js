@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 const CartaoPerfil = () => {
     
   const [detalhesVisuais, setDetalhesVisiveis] = useState(false)
+  
   return (
     <View style={styles.container}>
         <Image
@@ -16,7 +17,7 @@ const CartaoPerfil = () => {
         <Text style={styles.ocupacao}>Desenvolvedor Mobile</Text>
 
         <TouchableOpacity style={styles.botao} onPress={() => setDetalhesVisiveis(!detalhesVisuais)}>
-            <Text style={styles.textoBotao}>{detalhesVisuais ? "Vern menos" : 'Ver Mais'}</Text>
+            <Text style={styles.textoBotao}>{detalhesVisuais ? "Ver Menos" : 'Ver Mais'}</Text>
         </TouchableOpacity>
 
       
