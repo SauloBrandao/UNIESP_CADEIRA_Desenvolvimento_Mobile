@@ -1,11 +1,10 @@
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 
 const CartaoPerfil = () => {
     
-    const [detalhesVisiveis, setDetalhesVisiveis] = useState(false)
-  
-    return (
+  const [detalhesVisuais, setDetalhesVisiveis] = useState(false)
+  return (
     <View style={styles.container}>
         <Image
             source={{ uri: 'https://avatars.githubusercontent.com/u/1?v=4' }}
@@ -16,15 +15,16 @@ const CartaoPerfil = () => {
 
         <Text style={styles.ocupacao}>Desenvolvedor Mobile</Text>
 
-        <TouchableOpacity style={styles.botao} onPress={() => setDetalhesVisiveis(!detalhesVisiveis)}>
-            <Text style={styles.textoBotao}>Ver Menos</Text>
+        <TouchableOpacity style={styles.botao} onPress={() => setDetalhesVisiveis(!detalhesVisuais)}>
+            <Text style={styles.textoBotao}>{detalhesVisuais ? "Vern menos" : 'Ver Mais'}</Text>
         </TouchableOpacity>
 
-        <View style={styles.detalhes}>
-            <Text style={styles.textoDetalhe}>Localiação: João Pessoa</Text>
-            <Text style={styles.textoDetalhe}>Email: john@gmail.com</Text>
-            <Text style={styles.textoDetalhe}>Hobbies: Programar, Viajar, Jogar e Ler</Text>
-        </View>
+      
+        {detalhesVisuais && (<View style={styles.detalhes}>
+            <Text style={styles.textoDetalhe}>João Pessoa</Text>
+            <Text style={styles.textoDetalhe}>email: johndoe@gmail.com</Text>
+            <Text style={styles.textoDetalhe}>Hobbies: Ler, Jogar Jogos e viajar</Text>
+        </View>)}
     </View>
   )
 }

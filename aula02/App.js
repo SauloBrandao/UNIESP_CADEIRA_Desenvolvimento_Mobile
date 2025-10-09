@@ -7,7 +7,7 @@ import CartaoPerfil from './src/components/CartaoPerfil'
 const App = () => {
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <CartaoPerfil />
+      <CartaoPerfil></CartaoPerfil>
     </View>
   )
 }
