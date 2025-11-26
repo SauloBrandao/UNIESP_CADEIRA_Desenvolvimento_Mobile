@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TextInput, Button, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, TextInput, Button, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
 import { useState } from 'react'
 
@@ -9,6 +9,11 @@ const LoginScreen = () => {
 
   return (
     <View style={styles.container}>
+      <Image
+        source={{ uri: 'https://raw.githubusercontent.com/AboutReact/sampleresource/master/old_logo.png'}}
+        style={styles.logo}
+        resizeMode='contain'
+      />
       <Text style={styles.title}>Login</Text>
 
       <TextInput
@@ -27,6 +32,11 @@ const LoginScreen = () => {
       />
 
       <Button title="Entrar" />
+
+      <View style={styles.linksRow}>
+        <Text>Esqueceu a senha?</Text>
+        <Text>Registre-se</Text>
+      </View>
 
       { /* Botão GitHub */ }
       <TouchableOpacity style={[styles.socialButtons, { backgroundColor: '#333' }]}>
