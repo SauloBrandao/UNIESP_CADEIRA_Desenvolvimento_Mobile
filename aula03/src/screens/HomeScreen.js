@@ -1,11 +1,33 @@
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import { FlatList } from 'react-native-web'
 import { Touchable } from 'react-native'
-
-
+import { db } from '../config/fireBaseConfig'
+import { collection, getDocs } from 'firebase/firestore'
 
 const HomeScreen = ({ navigation } ) => {
+
+    const [courses, setCourses] = useState([])
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState(null)
+
+    useEffect(() => {
+        const fetchCourses = async () => {
+            try {
+               const snapshot = await getDocs(collection(db, "cursos"))
+               const data = snapshot.docs.map((doc) => ({
+                id: doc.id,
+                ... doc.data()
+               }))
+               setCourses((data))
+            } catch (error) {
+                console.error("Erro ao buscar cursos no Firestore", error)
+                setError("Não foi possível carregar cursos. Tente novamente.")
+            } finally {
+                setLoading(false)
+            }
+        }
+    }, [])
 
     const items = [
         { id: '1', c: 'Curso de React Native', description: 'Aprenda a criar apps para Android e iOS' },
