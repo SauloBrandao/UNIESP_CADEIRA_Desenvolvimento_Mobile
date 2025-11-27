@@ -3,21 +3,27 @@ import React from 'react'
 import { FlatList } from 'react-native-web'
 import { Touchable } from 'react-native'
 
-const HomeScreen = () => {
+
+
+const HomeScreen = ({ navigation } ) => {
 
     const items = [
-        { id: '1', name: 'Curso de React Native', description: 'Aprenda a criar apps para Android e iOS' },
+        { id: '1', c: 'Curso de React Native', description: 'Aprenda a criar apps para Android e iOS' },
         { id: '2', name: 'Curso de Java Spring Boot', description: 'Construa APIs robusta com Java e Spring'},
         { id: '3', name: 'Curso de AWS ', description: 'Domine os serviços da AWS'},
         { id: '4', name: 'Curso de Python para Data Science', description: 'Domine analise de dados em Python'}
     ]
+
+    const goToDetails = (course) => {
+    navigation.navigate("Details", {course})
+    }
 
   return (
     <View style={styles.container}>
         <Text style={styles.title}>📚 Cursos Disponíveis </Text>
         <FlatList data={items} 
         KeyExtractor={(item) => item.id}
-        renderItem={({ item }) => (<TouchableOpacity style={styles.itemContainer}>
+        renderItem={({ item }) => (<TouchableOpacity style={styles.itemContainer} onPress={ () => goToDetails((item))}>
             <Text style={styles.itemTitle}>{item.name}</Text>
             <Text style={styles.itemDescription}>{item.description}</Text>
         </TouchableOpacity>)}>
