@@ -1,5 +1,7 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import React from 'react'
+import { FlatList } from 'react-native-web'
+import { Touchable } from 'react-native'
 
 const HomeScreen = () => {
 
@@ -7,14 +9,19 @@ const HomeScreen = () => {
         { id: '1', name: 'Curso de React Native', description: 'Aprenda a criar apps para Android e iOS' },
         { id: '2', name: 'Curso de Java Spring Boot', description: 'Construa APIs robusta com Java e Spring'},
         { id: '3', name: 'Curso de AWS ', description: 'Domine os serviços da AWS'},
-        { id: '4', name: '', description: 'Construa APIs robusta com Java e Spring'}
+        { id: '4', name: 'Curso de Python para Data Science', description: 'Domine analise de dados em Python'}
     ]
 
   return (
     <View style={styles.container}>
         <Text style={styles.title}>📚 Cursos Disponíveis </Text>
-
-        <View></View>
+        <FlatList data={items} 
+        KeyExtractor={(item) => item.id}
+        renderItem={({ item }) => (<TouchableOpacity style={styles.itemContainer}>
+            <Text style={styles.itemTitle}>{item.name}</Text>
+            <Text style={styles.itemDescription}>{item.description}</Text>
+        </TouchableOpacity>)}>
+        </FlatList>
     </View>
   )
 }
